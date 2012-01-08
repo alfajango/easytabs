@@ -183,20 +183,25 @@ EasyTabs will simply add the .active class to the currently selected tab and pan
 
 ## AJAX Tabs
 
-Sometimes we want to load content into a tab from another page via AJAX. In order to do that, we'll change the markup of the tabs a little bit. The difference in markup is to keep things semantically meaningful and gracefully degradable (see explanation).
+Sometimes we want to load content into a tab from another page via AJAX. In order to do that, we'll change the markup of the tabs a little bit.
 
-For AJAX tabs, the URL for the content goes in the href attribute, and we move the target panel's id to the data-target attribute:
 
-{% highlight html %}
-<a href="/some/ajax/path.html" data-target="#panel-1" class="tabs">I'm a tab</a>
-<div id="panel-1">Panel content</div>
-{% endhighlight %}
+<div id="ajax-tab-container" class='tab-container'>
+ <ul class='tabs'>
+   <li class='tab'><a href="ajax.html #html-content" data-target="#tabs-ajax-html">HTML Markup</a></li>
+   <li class='tab'><a href="ajax.html #js-content" data-target="#tabs-ajax-js">Required JS</a></li>
+ </ul>
+ <div class='panel-container'>
+  <div id="tabs-ajax-html"></div>
+  <div id="tabs-ajax-js"></div>
+ </div>
+</div>
 
-We can also load a page fragment via ajax by adding a CSS selector after the AJAX URL:
-
-{% highlight html %}
-<a href="/some/ajax/path.html #some-element" data-target="#panel-1" class="tabs">I'm a tab</a>
-{% endhighlight %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#ajax-tab-container').easytabs();
+  });
+</script>
 
 Also see the cache configuration option, and the easytabs:ajax:beforeSend and easytabs:ajax:complete event hooks below.
 

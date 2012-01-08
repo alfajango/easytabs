@@ -1,0 +1,34 @@
+---
+layout: nil
+---
+
+<div id="html-content">
+  <p>This content was loaded via AJAX!</p>
+  <h2>HTML Markup for these tabs</h2>
+
+{% highlight html %}
+<div id="ajax-tab-container" class='tab-container'>
+ <ul class='tabs'>
+   <li class='tab'><a href="ajax.html #html-content" data-target="#tabs-ajax-html">HTML Markup</a></li>
+   <li class='tab'><a href="ajax.html #js-content" data-target="#tabs-ajax-js">Required JS</a></li>
+ </ul>
+ <div class='panel-container'>
+  <div id="tabs-ajax-html"></div>
+  <div id="tabs-ajax-js"></div>
+ </div>
+</div>
+{% endhighlight %}
+
+  <p>For AJAX tabs, the URL for the content goes in the href attribute, and we move the target panel's id to the data-target attribute:</p>
+  <p>This difference in markup keeps things semantically meaningful and degrades gracefully.</p>
+  <p>Notice that we can also load a page fragment via ajax by adding a CSS selector after the AJAX URL.</p>
+</div>
+<div id="js-content">
+  <p>This content was loaded via AJAX!</p>
+  <h2>JS for these tabs</h2>
+{% highlight js %}
+$(document).ready(function(){
+  $('#ajax-tab-container').easytabs();
+});
+{% endhighlight %}
+</div>
