@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>{{ page.title }}</title>
+    <link rel="stylesheet" media="all" href="css/application.css" />
     <link rel="stylesheet" media="all" href="css/pygments.css" />
     <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
     <script type='text/javascript' src='js/jquery.scrollTo.js'></script>
@@ -24,12 +25,14 @@
   <body>
     <div class='sidebar'>
       <ul id='resources'>
+        <h2>Resources</h2>
         {% for link in page.links %}
         <li><a href="{{ link.href }}">{{ link.title }}</a></li>
         {% endfor %}
       </ul>
 
       <ul id='nav'>
+        <h2>Contents</h2>
         {% for anchor in page.anchors %}
         <li><a href="{{ anchor.href }}">{{ anchor.title }}</a></li>
         {% endfor %}

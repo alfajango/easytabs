@@ -1,0 +1,4 @@
+table { font-size: 12px; border-spacing: 0px; }
+thead { text-align: left; }
+th { background: #71af5a; border: solid 1px #71af5a; padding: 5px; }
+td { padding: 5px 10px; vertical-align: top; border-bottom: solid 1px #d7d7d7; }

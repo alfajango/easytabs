@@ -92,13 +92,13 @@ The HTML markup for your tabs and content can be arranged however you want. At t
 To enable back- and forward-button support for the users' browsers, be sure to include either the jQuery HashChange plugin (recommended) or the Address plugin before including the EasyTabs plugin. There is no other configuration required, it will just work!
 
 {% highlight html %}
-<script src="/javascripts/jquery.js" type="text/javascript"></script> 
-<script src="/javascripts/jquery.hashchange.js" type="text/javascript"></script> 
-<script src="/javascripts/jquery.easytabs.js" type="text/javascript"></script>  
+<script src="/javascripts/jquery.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.hashchange.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.easytabs.js" type="text/javascript"></script>
 
-<script type="text/javascript"> 
-  $(document).ready(function(){ 
-    $('#tab-container').easytabs(); 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#tab-container').easytabs();
   });
 </script>
 {% endhighlight %}
@@ -183,58 +183,103 @@ Also see the cache configuration option, and the easytabs:ajax:beforeSend and ea
 
 You can configure EasyTabs by passing in a hash of options when you instantiate it on a container. The following is a list of all the available options, including accepted and default values.
 
-Available Options
+### Available Options
 
-Option	Description	Values (default)
-animate	Makes content panels fade out and in when a new tab is clicked.	true, false 
-(true)
-animationSpeed	Controls the speed of the fading effect if animate: true.	"slow", "normal", "fast", integer in milliseconds 
-("normal")
-cache
-v2.3	Caches the content retrieved for ajax tabs after the first request, such that subsequent tab clicks only hide/show the content.	true, false 
-(true)
-collapsedByDefault
-v2.1	Makes tabs collapsed by default (when the page is loaded) if collapsible: true. Note that if defaultTab is specified, then collapsedByDefault defaults to false.	true, false 
-(true)
-collapsedClass
-v2.1	Adds specified class to tab when panel is collapsed. Only works for collapsible: true.	any class name string 
-("collapsed")
-collapsible
-v2.1	Makes panels collapse and un-collapse if active tab is clicked repeatedly.	true, false 
-(false)
-cycle
-v1.1.2	Turns on automatic cycling through tabs, with the specified cycling interval in milliseconds.	false, integer in milliseconds 
-(false)
-defaultTab	Selects the <li> tab to activate when page first loads.	any single jquery selector 
-e.g. "li:first-child" or "li#tab-2" 
-("li:first-child")
-panelActiveClass	Adds specified class to the currently-selected content <div>	any class name string 
-e.g. "active" or "selected" 
-("active")
-tabActiveClass	Adds specified class to the currently-selected tab <li> (and it's descendants).	any class name string e.g. "active" or "selected" 
-("active")
-tabs
-v1.1.2	The container element for your tabs, relative to the container element that easyTabs was applied to.	any jquery selector referencing your collection of tabs 
-e.g. `"ul#tabs > li"` or `"div#tab-container > span"` 
-("> ul > li", which selects the top-level `<ul>` within the container element)
-transitionIn
-v2.2	The jQuery effect used to show the target panel when a tab is selected.	'fadeIn', 'slideDown' 
-('fadeIn')
-transitionOut
-v2.2	The jQuery effect used to hide the visible panel when a tab is selected.	'fadeOut', 'slideUp' 
-('fadeOut')
-transitionCollapse
-v2.2	The jQuery effect used to collapse the panel if collapsible: true.	'fadeOut', 'slideUp', 'hide' 
-(slideUp)
-transitionUncollapse
-v2.2	The jQuery effect used to un-collapse the panel if collapsible: true.	'fadeIn', 'slideDown', 'show' 
-(slideDown)
-updateHash
-v1.1.2	Tells easyTabs whether or not to update the browser window's URL hash, useful for SEO and bookmarking.	true, false 
-(true)
-uiTabs
-v2.1	Automatically uses class names and defaults of jQuery UI tabs, making it easy to switch from jQuery-UI tabs without needing to change any HTML or CSS styles.	true, false 
-(false)
+<table>
+ <thead>
+  <th>Option</th>
+  <th>Description</th>
+  <th>Values (default)</th>
+ </thead>
+ <tbody>
+  <tr>
+   <td>animate</td>
+   <td>Makes content panels fade out and in when a new tab is clicked.</td>
+   <td>true, false <br />(<code>true</code>)</td>
+  </tr>
+  <tr>
+   <td>animationSpeed</td>
+   <td>Controls the speed of the fading effect if <code>animate: true</code>.</td>
+   <td><code>"slow"</code>, <code>"normal"</code>, <code>"fast"</code>, integer in milliseconds <br />(<code>"normal"</code>)</td>
+  </tr>
+  <tr>
+   <td>cache<br /><em>v2.3</em></td>
+   <td>Caches the content retrieved for ajax tabs after the first request, such that subsequent tab clicks only hide/show the content.</td>
+   <td><code>true</code>, <code>false</code> <br />(<code>true</code>)</td>
+  </tr>
+  <tr>
+   <td>collapsedByDefault<br /><em>v2.1</em></td>
+   <td>Makes tabs collapsed by default (when the page is loaded) if <code>collapsible: true</code>. Note that if <code>defaultTab</code> is specified, then <code>collapsedByDefault</code> defaults to <code>false</code>.</td>
+   <td><code>true</code>, <code>false</code> <br />(<code>true</code>)</td>
+  </tr>
+  <tr>
+   <td>collapsedClass<br /><em>v2.1</em></td>
+   <td>Adds specified class to tab when panel is collapsed. Only works for <code>collapsible: true</code>.</td>
+   <td>any class name string <br />(<code>"collapsed"</code>)</td>
+  </tr>
+  <tr>
+   <td>collapsible<br /><em>v2.1</em></td>
+   <td>Makes panels collapse and un-collapse if active tab is clicked repeatedly.</td>
+   <td><code>true</code>, <code>false</code> <br />(<code>false</code>)</td>
+  </tr>
+  <tr>
+   <td>cycle<br /><em>v1.1.2</em></td>
+   <td>Turns on automatic cycling through tabs, with the specified cycling interval in milliseconds.</td>
+   <td><code>false</code>, integer in milliseconds <br />(<code>false</code>)</td>
+  </tr>
+  <tr>
+   <td>defaultTab</td>
+   <td>Selects the <code>&lt;li&gt;</code> tab to activate when page first loads.</td>
+   <td>any single jquery selector <br /><em>e.g. <code>"li:first-child"</code> or <code>"li#tab-2"</code></em> <br />(<code>"li:first-child"</code>)</td>
+  </tr>
+  <tr>
+   <td>panelActiveClass</td>
+   <td>Adds specified class to the currently-selected content <code>&lt;div&gt;</code></td>
+   <td>any class name string <br /><em>e.g. <code>"active"</code> or <code>"selected"</code></em> <br />(<code>"active"</code>)</td>
+  </tr>
+  <tr>
+   <td>tabActiveClass</td>
+   <td>Adds specified class to the currently-selected tab <code>&lt;li&gt;</code> (and it's descendants).</td>
+   <td>any class name string <em>e.g. <code>"active"</code> or <code>"selected"</code></em> <br />(<code>"active"</code>)</td>
+  </tr>
+  <tr>
+   <td>tabs<br /><em>v1.1.2</em></td>
+   <td>The container element for your tabs, relative to the container element that easyTabs was applied to.</td>
+   <td>any jquery selector referencing your collection of tabs <br /><em>e.g. <code>"ul#tabs > li"</code> or <code>"div#tab-container > span"</code></em> <br />(<code>"> ul > li"</code>, which selects the top-level <code><ul></code> within the container element)</ul></td>
+  </tr>
+  <tr>
+   <td>transitionIn<br /><em>v2.2</em></td>
+   <td>The <a href="http://api.jquery.com/category/effects/">jQuery effect</a> used to show the target panel when a tab is selected.</td>
+   <td><code>'fadeIn'</code>, <code>'slideDown'</code> <br />(<code>'fadeIn'</code>)</td>
+  </tr>
+  <tr>
+   <td>transitionOut<br /><em>v2.2</em></td>
+   <td>The <a href="http://api.jquery.com/category/effects/">jQuery effect</a> used to hide the visible panel when a tab is selected.</td>
+   <td><code>'fadeOut'</code>, <code>'slideUp'</code> <br />(<code>'fadeOut'</code>)</td>
+  </tr>
+  <tr>
+   <td>transitionCollapse<br /><em>v2.2</em></td>
+   <td>The <a href="http://api.jquery.com/category/effects/">jQuery effect</a> used to collapse the panel if <code>collapsible: true</code>.</td>
+   <td><code>'fadeOut'</code>, <code>'slideUp'</code>, <code>'hide'</code> <br />(<code>slideUp</code>)</td>
+  </tr>
+  <tr>
+   <td>transitionUncollapse<br /><em>v2.2</em></td>
+   <td>The <a href="http://api.jquery.com/category/effects/">jQuery effect</a> used to un-collapse the panel if <code>collapsible: true</code>.</td>
+   <td><code>'fadeIn'</code>, <code>'slideDown'</code>, <code>'show'</code> <br />(<code>slideDown</code>)</td>
+  </tr>
+  <tr>
+   <td>updateHash<br /><em>v1.1.2</em></td>
+   <td>Tells easyTabs whether or not to update the browser window's URL hash, useful for SEO and bookmarking.</td>
+   <td><code>true</code>, <code>false</code> <br />(<code>true</code>)</td>
+  </tr>
+  <tr>
+   <td>uiTabs<br /><em>v2.1</em></td>
+   <td>Automatically uses class names and defaults of jQuery UI tabs, making it easy to switch from jQuery-UI tabs without needing to change any HTML or CSS styles.</td>
+   <td><code>true</code>, <code>false</code> <br />(<code>false</code>)</td>
+  </tr>
+ </tbody>
+</table>
+
 Here's an example that uses all of the configuration options:
 
 {% highlight js %}
