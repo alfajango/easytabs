@@ -303,26 +303,49 @@ You can configure EasyTabs by passing in a hash of options when you instantiate 
  </tbody>
 </table>
 
-Here's an example that uses all of the configuration options:
+Here's an example that uses some of the non-default configuration options:
 
 <div id="tab-full-container" class='tab-container'>
  <div class='tabs'>
-  <span class='tab'><a href="#tab-1-div">Tab 1</a></span>
-  <span class='tab' id="tab-2"><a href="#that-other-tab">The Second Tab</a></span>
-  <span class='tab'><a href="#lastly">Tab C</a></span>
+  <span class='tab'><a href="#tabs2-html">HTML Markup</a></span>
+  <span class='tab' id="tab-2"><a href="#tabs2-js">The JS</a></span>
  </div>
  <div class='panel-container'>
-  <div id="tab-1-div">
-   <h2>Heading 1</h2>
-   <p>This is the content of the first tab.</p>
+  <div id="tabs2-html">
+   <h2>HTML Markup for these tabs</h2>
+{% highlight html %}
+<div id="tab-full-container" class='tab-container'>
+ <div class='tabs'>
+  <span class='tab'><a href="#tabs2-html">HTML Markup</a></span>
+  <span class='tab' id="tab-2"><a href="#tabs2-js">The JS</a></span>
+ </div>
+ <div class='panel-container'>
+  <div id="tabs2-html">
+   <h2>HTML Markup for these tabs</h2>
+   <!-- content -->
   </div>
-   <div id="that-other-tab">
-   <h2>Heading 2</h2>
-   <p>Stuff from the second tab.</p>
+   <div id="tabs2-js">
+   <h2>JS for these tabs</h2>
+   <!-- content -->
   </div>
-  <div id="lastly">
-   <h2>Heading 3</h2>
-   <p>More stuff from the last tab.</p>
+ </div>
+</div>
+{% endhighlight %}
+  </div>
+   <div id="tabs2-js">
+   <h2>JS for these tabs</h2>
+{% highlight js %}
+$("#tab-full-container").easytabs({
+  animate: true,
+  animationSpeed: 1000,
+  defaultTab: "span#tab-2",
+  panelActiveClass: "active-content-div",
+  tabActiveClass: "selected-tab",
+  tabs: "> div > span",
+  updateHash: false,
+  cycle: 2000
+});
+{% endhighlight %}
   </div>
  </div>
 </div>
@@ -341,19 +364,6 @@ Here's an example that uses all of the configuration options:
     });
   });
 </script>
-
-{% highlight js %}
-$("#tab-full-container").easytabs({
-  animate: true,
-  animationSpeed: 1000,
-  defaultTab: "span#tab-2",
-  panelActiveClass: "active-content-div",
-  tabActiveClass: "selected-tab",
-  tabs: "> div > span",
-  updateHash: false,
-  cycle: 2000
-});
-{% endhighlight %}
 
 <span id="public-methods"></span>
 
