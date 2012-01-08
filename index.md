@@ -96,7 +96,7 @@ To enable back- and forward-button support for the users' browsers, be sure to i
 </script>
 {% endhighlight %}
 
-I varied the tab ids and names just to show you how flexible this is. There is no magic going on with this plugin; it's not trying to guess the order of your tabs or which tab matches which panel. Just make the href of the tab link match the id of the panel <div>.
+I varied the tab ids and names just to show you how flexible this is. There is no magic going on with this plugin; it's not trying to guess the order of your tabs or which tab matches which panel. Just make the href of the tab link match the id of the panel `<div>`.
 
 ## Required Markup
 
