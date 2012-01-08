@@ -12,6 +12,21 @@ links:
     href: https://github.com/JangoSteve/jQuery-EasyTabs/wiki/CHANGELOG
   - title: Report bug or request feature
     href: https://github.com/JangoSteve/jQuery-EasyTabs/issues
+anchors:
+  - title: Installation
+    href: '#installation'
+  - title: Stylization
+    href: '#stylization'
+  - title: AJAX tabs
+    href: '#ajax-tabs'
+  - title: Configuration options
+    href: '#configuration'
+  - title: Public methods
+    href: '#public-methods'
+  - title: Event hooks
+    href: '#event-hooks'
+  - title: Demos
+    href: '#demos'
 ---
 
 # JQuery EasyTabs Plugin
@@ -42,15 +57,7 @@ Why you should use EasyTabs:
 * Open-source and dual licensed under the MIT and GPL licenses
 * Styles your tabs in any way (either through javascript or CSS)
 
-Contents
-
-Installation
-Stylization
-AJAX Tabs
-Configuration options
-Public methods
-Event hooks
-Demos
+<span id="installation"></span>
 
 ## Installation
 
@@ -107,6 +114,7 @@ the container contains a collection (a `<ul>` by default) of links `<a>`
 the container also contains panel divs (for the tabbed content), each div has a unique id that matches the href property of a link in the tab collection
 Other than that, go nuts. The order of the elements does NOT matter. Your tabs could be before or after the panels. You can put non-tabbed content between the elements. You could even put the tabs inside one of the panels! It doesn't matter.
 
+<span id="stylization"></span>
 
 ## Styling Tabs and Content
 
@@ -148,6 +156,8 @@ EasyTabs will simply add the .active class to the currently selected tab and pan
 </ul>
 {% endhighlight %}
 
+<span id="ajax-tabs"></span>
+
 ## AJAX Tabs
 
 Sometimes we want to load content into a tab from another page via AJAX. In order to do that, we'll change the markup of the tabs a little bit. The difference in markup is to keep things semantically meaningful and gracefully degradable (see explanation).
@@ -166,6 +176,8 @@ We can also load a page fragment via ajax by adding a CSS selector after the AJA
 {% endhighlight %}
 
 Also see the cache configuration option, and the easytabs:ajax:beforeSend and easytabs:ajax:complete event hooks below.
+
+<span id="configuration"></span>
 
 ## Configuration Options
 
@@ -238,6 +250,8 @@ $("#tab-container").easytabs({
 });
 {% endhighlight %}
 
+<span id="public-methods"></span>
+
 ## Public methods
 
 EasyTabs currently has one public method, called select, which allows you to select a tab via JavaScript.
@@ -247,6 +261,8 @@ $('#tab-container').easytabs('select', '#tab-2');
 {% endhighlight %}
 
 The parameter passed to select (`'#tab-2'` in the example above), can be either a jQuery selector to select the tab (e.g. one of the `<li>` elements), the tab link (e.g. one of the `<a>` elements), or it can be the id of one of the panels.
+
+<span id="event-hooks"></span>
 
 ## Event Hooks
 
@@ -279,9 +295,12 @@ The ajax event hooks have their own set of data passed as well, see this post fo
 
 The easytabs:midTransition is also when the URL gets updated when the configuration option updateHash is true (which it is by default). The URL must be updated precisely after the previous panel has disappeared from the page, but before the next panel appears to avoid making the browser window jump to the panel when the URL is updated.
 
+<span id="demos"></span>
+
 ## Live demos
 
  Many tab containers on one page (with various configurations)
 
  Disconnected tabs and tabbed content demo
 
+</div>

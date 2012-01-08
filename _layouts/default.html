@@ -2,12 +2,36 @@
   <head>
     <title>{{ page.title }}</title>
     <link rel="stylesheet" media="all" href="css/pygments.css" />
+    <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
+    <script type='text/javascript' src='js/jquery.scrollTo.js'></script>
+    <script type='text/javascript' src='js/jquery.nav.min.js'></script>
+
+    <script>
+      $(document).ready( function() {
+        $('#nav').onePageNav({
+          currentClass: 'current',
+          changeHash: true,
+          scrollSpeed: 750,
+          scrollOffset: 30,
+          begin: function() {
+          },
+          end: function() {
+          }
+        });
+      });
+    </script>
   </head>
   <body>
-    <div class='toc'>
-      <ul>
+    <div class='sidebar'>
+      <ul id='resources'>
         {% for link in page.links %}
         <li><a href="{{ link.href }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+
+      <ul id='nav'>
+        {% for anchor in page.anchors %}
+        <li><a href="{{ anchor.href }}">{{ anchor.title }}</a></li>
         {% endfor %}
       </ul>
     </div>
