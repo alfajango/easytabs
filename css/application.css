@@ -2,3 +2,37 @@ table { font-size: 12px; border-spacing: 0px; }
 thead { text-align: left; }
 th { background: #71af5a; border: solid 1px #71af5a; padding: 5px; }
 td { padding: 5px 10px; vertical-align: top; border-bottom: solid 1px #d7d7d7; }
+
+pre,
+.highlight {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+pre {
+  border-radius: 4px;
+  overflow: auto;
+  padding: 4px;
+}
+pre::-webkit-scrollbar,
+.highlight::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+pre::-webkit-scrollbar-track,
+.highlight::-webkit-scrollbar-track {
+  background-color: #333;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+pre::-webkit-scrollbar-corner,
+.highlight::-webkit-scrollbar-corner {
+  background: transparent;
+}
+pre::-webkit-scrollbar-thumb,
+.highlight::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(156,217,107,0.7)), to(rgba(156,217,107,0.9)));
+  -webkit-border-radius: 1ex;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
