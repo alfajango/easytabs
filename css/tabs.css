@@ -1,0 +1,12 @@
+/* Example Styles for Demo */
+.tabs { margin: 0; padding: 0; }
+.tab { display: inline-block; background: #ccc; border: solid 1px; border-bottom: none; }
+.tab a { display: block; padding: 5px; outline: none; }
+.tab a:hover { text-decoration: underline; }
+.tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; }
+.tab a.active { font-weight: bold; }
+.tab-container .panel-container { border: solid #000 1px; padding: 0 10px; }
+
+/* Styles for alternate tabActiveClass */
+.tab.selected-tab { background: #fff; padding-top: 6px; position: relative; top: 1px; }
+.tab a.selected-tab { font-weight: bold; }

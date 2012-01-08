@@ -62,23 +62,70 @@ Why you should use EasyTabs:
 ## Demo
 
 <div id="tab-container" class='tab-container'>
- <ul>
-  <li><a href="#tab-1-div">Tab 1</a></li>
-  <li><a href="#that-other-tab">The Second Tab</a></li>
-  <li><a href="#lastly">Tab C</a></li>
+ <ul class='tabs'>
+   <li class='tab'><a href="#tabs1-html">HTML Markup</a></li>
+   <li class='tab'><a href="#tabs1-js">Required JS</a></li>
+   <li class='tab'><a href="#tabs1-css">Example CSS</a></li>
  </ul>
  <div class='panel-container'>
-  <div id="tab-1-div">
-   <h2>Heading 1</h2>
-   <p>This is the content of the first tab.</p>
+  <div id="tabs1-html">
+   <h2>HTML Markup for these tabs</h2>
+
+{% highlight html %}
+<div id="tab-container" class="tab-container">
+  <ul class='tabs'>
+    <li class='tab'><a href="#tabs1-html">HTML Markup</a></li>
+    <li class='tab'><a href="#tabs1-js">Required JS</a></li>
+    <li class='tab'><a href="#tabs1-css">Example CSS</a></li>
+  </ul>
+  <div id="tabs1-html">
+    <h2>HTML Markup for these tabs</h2>
+    <!-- content -->
   </div>
-   <div id="that-other-tab">
-   <h2>Heading 2</h2>
-   <p>Stuff from the second tab.</p>
+    <div id="tabs1-js">
+    <h2>JS for these tabs</h2>
+    <!-- content -->
   </div>
-  <div id="lastly">
-   <h2>Heading 3</h2>
-   <p>More stuff from the last tab.</p>
+  <div id="tabs1-css">
+    <h2>CSS Styles for these tabs</h2>
+    <!-- content -->
+  </div>
+</div>
+{% endhighlight %}
+
+   <p>The HTML markup for your tabs and content can be arranged however you want. At the minimum, you need a container, a collection of links for your tabs (an unordered list by default), and matching divs for your tabbed content. Make sure the tab `href` attributes match the
+`id` of the target panel. This is standard semantic markup for in-page anchors.</p>
+   <p>The class names above are just to make it easy to style. You can make them whatever you want, there's no magic here.</p>
+  </div>
+   <div id="tabs1-js">
+   <h2>JS for these tabs</h2>
+
+{% highlight html %}
+<script src="/javascripts/jquery.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.hashchange.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.easytabs.js" type="text/javascript"></script>
+{% endhighlight %}
+
+   <p>Optionally include the jquery hashchange plugin (recommended) or address plugin to enable forward-
+and back-button functionality.</p>
+
+{% highlight js %}
+$(document).ready(function(){
+  $('#tab-container').easytabs();
+});
+{% endhighlight %}
+  </div>
+  <div id="tabs1-css">
+   <h2>CSS Styles for these tabs</h2>
+{% highlight css %}
+.tabs { margin: 0; padding: 0; }
+.tab { display: inline-block; background: #ccc; border: solid 1px; border-bottom: none; }
+.tab a { display: block; padding: 5px; outline: none; }
+.tab a:hover { text-decoration: underline; }
+.tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; }
+.tab a.active { font-weight: bold; }
+.tab-container .panel-container { border: solid #000 1px; padding: 0 10px; }
+{% endhighlight %}
   </div>
  </div>
 </div>
@@ -90,54 +137,6 @@ Why you should use EasyTabs:
 </script>
 
 <span id="installation"></span>
-
-## Installation
-
-The above example uses the following HTML, JS, and CSS.
-
-### The HTML
-
-The HTML markup for your tabs and content can be arranged however you want. At the minimum, you need a container, a collection (unordered list by default) of links for your tabs, and matching divs for your tabbed content.
-
-{% highlight html %}
-<div id="tab-container" class="tab-container">
-  <ul>
-    <li><a href="#tab-1-div">Tab 1</a></li>
-    <li><a href="#that-other-tab">The Second Tab</a></li>
-    <li><a href="#lastly">Tab C</a></li>
-  </ul>
-  <div id="tab-1-div">
-    <h2>Heading 1</h2>
-    <p>This is the content of the first tab.</p>
-  </div>
-    <div id="that-other-tab">
-    <h2>Heading 2</h2>
-    <p>Stuff from the second tab.</p>
-  </div>
-  <div id="lastly">
-    <h2>Heading 3</h2>
-    <p>More stuff from the last tab.</p>
-  </div>
-</div>
-{% endhighlight %}
-
-### The Javascript
-
-To enable back- and forward-button support for the users' browsers, be sure to include either the jQuery HashChange plugin (recommended) or the Address plugin before including the EasyTabs plugin. There is no other configuration required, it will just work!
-
-{% highlight html %}
-<script src="/javascripts/jquery.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.hashchange.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.easytabs.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#tab-container').easytabs();
-  });
-</script>
-{% endhighlight %}
-
-I varied the tab ids and names just to show you how flexible this is. There is no magic going on with this plugin; it's not trying to guess the order of your tabs or which tab matches which panel. Just make the href of the tab link match the id of the panel `<div>`.
 
 ## Required Markup
 
@@ -153,16 +152,6 @@ Other than that, go nuts. The order of the elements does NOT matter. Your tabs c
 ## Styling Tabs and Content
 
 To style your tabs, you simply use your own CSS and stylesheet. Here's some very basic styling to get you started:
-
-{% highlight css %}
-.tab-container ul { margin: 0; padding: 0; }
-.tab-container ul li { display: inline-block; background: #ccc; border: solid 1px; border-bottom: none; }
-.tab-container ul li a { display: block; padding: 5px; outline: none; }
-.tab-container ul li a:hover { text-decoration: underline; }
-.tab-container ul li.active { background: #fff; padding-top: 6px; position: relative; top: 1px; }
-.tab-container ul li a.active { font-weight: bold; }
-.tab-container .panel-container { border: solid 1px; padding: 0 10px; }
-{% endhighlight %}
 
 EasyTabs will simply add the .active class to the currently selected tab and panel. Also, any element inside of the currently-selected tab also gets the .active class. So, for example, if your tabs look like this:
 
@@ -318,9 +307,9 @@ Here's an example that uses all of the configuration options:
 
 <div id="tab-full-container" class='tab-container'>
  <div class='tabs'>
-  <span><a href="#tab-1-div">Tab 1</a></span>
-  <span id="tab-2"><a href="#that-other-tab">The Second Tab</a></span>
-  <span><a href="#lastly">Tab C</a></span>
+  <span class='tab'><a href="#tab-1-div">Tab 1</a></span>
+  <span class='tab' id="tab-2"><a href="#that-other-tab">The Second Tab</a></span>
+  <span class='tab'><a href="#lastly">Tab C</a></span>
  </div>
  <div class='panel-container'>
   <div id="tab-1-div">
