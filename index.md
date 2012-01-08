@@ -13,6 +13,8 @@ links:
   - title: Report bug or request feature
     href: https://github.com/JangoSteve/jQuery-EasyTabs/issues
 anchors:
+  - title: Demo
+    href: '#demo'
   - title: Installation
     href: '#installation'
   - title: Stylization
@@ -25,8 +27,6 @@ anchors:
     href: '#public-methods'
   - title: Event hooks
     href: '#event-hooks'
-  - title: Demos
-    href: '#demos'
 ---
 
 # JQuery EasyTabs Plugin
@@ -57,9 +57,43 @@ Why you should use EasyTabs:
 * Open-source and dual licensed under the MIT and GPL licenses
 * Styles your tabs in any way (either through javascript or CSS)
 
+<span id="demo"></span>
+
+## Demo
+
+<div id="tab-container">
+ <ul>
+  <li><a href="#tab-1-div">Tab 1</a></li>
+  <li><a href="#that-other-tab">The Second Tab</a></li>
+  <li><a href="#lastly">Tab C</a></li>
+ </ul>
+ <div class='panel-container'>
+  <div id="tab-1-div">
+   <h2>Heading 1</h2>
+   <p>This is the content of the first tab.</p>
+  </div>
+   <div id="that-other-tab">
+   <h2>Heading 2</h2>
+   <p>Stuff from the second tab.</p>
+  </div>
+  <div id="lastly">
+   <h2>Heading 3</h2>
+   <p>More stuff from the last tab.</p>
+  </div>
+ </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#tab-container').easytabs();
+  });
+</script>
+
 <span id="installation"></span>
 
 ## Installation
+
+The above example uses the following HTML, JS, and CSS.
 
 ### The HTML
 
