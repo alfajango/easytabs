@@ -61,7 +61,7 @@ Why you should use EasyTabs:
 
 ## Demo
 
-<div id="tab-container">
+<div id="tab-container" class='tab-container'>
  <ul>
   <li><a href="#tab-1-div">Tab 1</a></li>
   <li><a href="#that-other-tab">The Second Tab</a></li>
@@ -100,7 +100,7 @@ The above example uses the following HTML, JS, and CSS.
 The HTML markup for your tabs and content can be arranged however you want. At the minimum, you need a container, a collection (unordered list by default) of links for your tabs, and matching divs for your tabbed content.
 
 {% highlight html %}
-<div id="tab-container">
+<div id="tab-container" class="tab-container">
   <ul>
     <li><a href="#tab-1-div">Tab 1</a></li>
     <li><a href="#that-other-tab">The Second Tab</a></li>
@@ -155,13 +155,13 @@ Other than that, go nuts. The order of the elements does NOT matter. Your tabs c
 To style your tabs, you simply use your own CSS and stylesheet. Here's some very basic styling to get you started:
 
 {% highlight css %}
-#tab-container ul { margin: 0; padding: 0; }
-#tab-container ul li { display: inline-block; background: #ccc; border: solid 1px; border-bottom: none; }
-#tab-container ul li a { display: block; padding: 5px; outline: none; }
-#tab-container ul li a:hover { text-decoration: underline; }
-#tab-container ul li.active { background: #fff; padding-top: 6px; position: relative; top: 1px; }
-#tab-container ul li a.active { font-weight: bold; }
-#tab-container .panel-container { border: solid 1px; padding: 0 10px; }
+.tab-container ul { margin: 0; padding: 0; }
+.tab-container ul li { display: inline-block; background: #ccc; border: solid 1px; border-bottom: none; }
+.tab-container ul li a { display: block; padding: 5px; outline: none; }
+.tab-container ul li a:hover { text-decoration: underline; }
+.tab-container ul li.active { background: #fff; padding-top: 6px; position: relative; top: 1px; }
+.tab-container ul li a.active { font-weight: bold; }
+.tab-container .panel-container { border: solid 1px; padding: 0 10px; }
 {% endhighlight %}
 
 EasyTabs will simply add the .active class to the currently selected tab and panel. Also, any element inside of the currently-selected tab also gets the .active class. So, for example, if your tabs look like this:
@@ -316,16 +316,53 @@ You can configure EasyTabs by passing in a hash of options when you instantiate 
 
 Here's an example that uses all of the configuration options:
 
+<div id="tab-full-container" class='tab-container'>
+ <div class='tabs'>
+  <span><a href="#tab-1-div">Tab 1</a></span>
+  <span id="tab-2"><a href="#that-other-tab">The Second Tab</a></span>
+  <span><a href="#lastly">Tab C</a></span>
+ </div>
+ <div class='panel-container'>
+  <div id="tab-1-div">
+   <h2>Heading 1</h2>
+   <p>This is the content of the first tab.</p>
+  </div>
+   <div id="that-other-tab">
+   <h2>Heading 2</h2>
+   <p>Stuff from the second tab.</p>
+  </div>
+  <div id="lastly">
+   <h2>Heading 3</h2>
+   <p>More stuff from the last tab.</p>
+  </div>
+ </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#tab-full-container").easytabs({
+      animate: true,
+      animationSpeed: 1000,
+      defaultTab: "span#tab-2",
+      panelActiveClass: "active-content-div",
+      tabActiveClass: "selected-tab",
+      tabs: "> div > span",
+      updateHash: false,
+      cycle: 2000
+    });
+  });
+</script>
+
 {% highlight js %}
-$("#tab-container").easytabs({
+$("#tab-full-container").easytabs({
   animate: true,
-  animationSpeed: 5000,
-  defaultTab: "li#tab-2",
+  animationSpeed: 1000,
+  defaultTab: "span#tab-2",
   panelActiveClass: "active-content-div",
   tabActiveClass: "selected-tab",
   tabs: "> div > span",
   updateHash: false,
-  cycle: 5000
+  cycle: 2000
 });
 {% endhighlight %}
 
