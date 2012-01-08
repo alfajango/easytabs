@@ -135,7 +135,7 @@ EasyTabs will simply add the .active class to the currently selected tab and pan
 </ul>
 {% endhighlight %}
 
-… and then you click on the first tab link, your markup will now look like this:
+... and then you click on the first tab link, your markup will now look like this:
 
 {% highlight html %}
 <ul>
