@@ -533,7 +533,7 @@ The `easytabs:midTransition` is also when the URL gets updated if `updateHash` i
 ## More demos
 
 Here are some more demos showcasing what you can do with EasyTabs. Check
-out the source to see how they're done.
+out the source and the linked [tabs.css](css/tabs.css) to see how they're done.
 
 ### Nested tabs
 
