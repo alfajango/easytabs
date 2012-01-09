@@ -106,7 +106,7 @@ Why you should use EasyTabs:
 <script src="/javascripts/jquery.easytabs.js" type="text/javascript"></script>
 {% endhighlight %}
 
-   <p>Optionally include the jquery hashchange plugin (recommended) or address plugin to enable forward-
+   <p>Optionally include the jquery [hashchange plugin](http://benalman.com/projects/jquery-hashchange-plugin/) (recommended) or [address plugin](http://www.asual.com/jquery/address/docs/) to enable forward-
 and back-button functionality.</p>
 
 {% highlight js %}
