@@ -7,7 +7,7 @@ links:
   - title: View Source or Fork on Github
     href: https://github.com/JangoSteve/jQuery-EasyTabs
   - title: View Live Demos
-    href: https://jspkg.com/packages/easytabs/demos
+    href: http://jspkg.com/packages/easytabs/demos
   - title: View Changelog
     href: https://github.com/JangoSteve/jQuery-EasyTabs/wiki/CHANGELOG
   - title: Report bug or request feature
