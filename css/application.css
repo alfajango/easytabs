@@ -1,6 +1,5 @@
 table { font-size: 12px; border-spacing: 0px; }
-thead { text-align: left; }
-th { background: #71af5a; border: solid 1px #71af5a; padding: 5px; }
+th { text-align: left; background: #71af5a; border: solid 1px #71af5a; padding: 5px; }
 td { padding: 5px 10px; vertical-align: top; border-bottom: solid 1px #d7d7d7; }
 
 pre,
@@ -35,4 +34,15 @@ pre::-webkit-scrollbar-thumb,
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(156,217,107,0.7)), to(rgba(156,217,107,0.9)));
   -webkit-border-radius: 1ex;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
+
+#tab-console {
+  background: #333;
+  padding: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #71af5a;
+}
+.logged-event {
+  display: block;
 }

@@ -110,9 +110,7 @@ Why you should use EasyTabs:
 and back-button functionality.</p>
 
 {% highlight js %}
-$(document).ready(function(){
-  $('#tab-container').easytabs();
-});
+$('#tab-container').easytabs();
 {% endhighlight %}
   </div>
   <div id="tabs1-css">
@@ -131,9 +129,7 @@ $(document).ready(function(){
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('#tab-container').easytabs();
-  });
+  $('#tab-container').easytabs();
 </script>
 
 <span id="installation"></span>
@@ -198,9 +194,7 @@ Sometimes we want to load content into a tab from another page via AJAX. In orde
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('#ajax-tab-container').easytabs();
-  });
+  $('#ajax-tab-container').easytabs();
 </script>
 
 Also see the cache configuration option, and the easytabs:ajax:beforeSend and easytabs:ajax:complete event hooks below.
@@ -356,17 +350,15 @@ $("#tab-full-container").easytabs({
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#tab-full-container").easytabs({
-      animate: true,
-      animationSpeed: 1000,
-      defaultTab: "span#tab-2",
-      panelActiveClass: "active-content-div",
-      tabActiveClass: "selected-tab",
-      tabs: "> div > span",
-      updateHash: false,
-      cycle: 2000
-    });
+  $("#tab-full-container").easytabs({
+    animate: true,
+    animationSpeed: 1000,
+    defaultTab: "span#tab-2",
+    panelActiveClass: "active-content-div",
+    tabActiveClass: "selected-tab",
+    tabs: "> div > span",
+    updateHash: false,
+    cycle: 2000
   });
 </script>
 
@@ -376,8 +368,18 @@ $("#tab-full-container").easytabs({
 
 EasyTabs currently has one public method, called select, which allows you to select a tab via JavaScript.
 
+<button id='select-button'>Click me to select the second tab above (and stop the cycling)</button>
+
+<script type="text/javascript">
+$('#select-button').click( function() {
+  $('#tab-full-container').easytabs('select', '#tab-2');
+});
+</script>
+
 {% highlight js %}
-$('#tab-container').easytabs('select', '#tab-2');
+$('#select-button').click( function() {
+  $('#tab-full-container').easytabs('select', '#tab-2');
+});
 {% endhighlight %}
 
 The parameter passed to select (`'#tab-2'` in the example above), can be either a jQuery selector to select the tab (e.g. one of the `<li>` elements), the tab link (e.g. one of the `<a>` elements), or it can be the id of one of the panels.
@@ -388,32 +390,119 @@ The parameter passed to select (`'#tab-2'` in the example above), can be either 
 
 jQuery EasyTabs fires off three events to which you can bind your own functionality.
 
-{% highlight js %}
-easytabs:before        // fires before a tab is selected
-easytabs:midTransition // fires after the previous panel has been hidden, but before the next is shown
-easytabs:after         // fires after a tab has been selected (and after the panel is completely finished transitioning in)
-{% endhighlight %}
+<table>
+ <thead>
+  <th>Option</th>
+  <th>Description</th>
+ </thead>
+ <tbody>
+  <tr>
+   <td>easytabs:before</td>
+   <td>Fires before a tab is selected.</td>
+  </tr>
+  <tr>
+   <td>easytabs:midTransition</td>
+   <td>Fires after the previous panel has been hidden, but before the next is shown.</td>
+  </tr>
+  <tr>
+   <td>easytabs:after</td>
+   <td>Fires after a tab has been selected (and after the panel is completely finished transitioning in).</td>
+  </tr>
+  <tr>
+   <th colspan=2>For ajax tabs, there are two additional event hooks that fire:</th>
+  </tr>
+  <tr>
+   <td>easytabs:ajax:beforeSend</td>
+   <td>Fires before ajax request is made.</td>
+  </tr>
+  <tr>
+   <td>easytabs:ajax:complete</td>
+   <td>Fires when ajax request is complete (before the content is loaded).</td>
+  </tr>
+ </tbody>
+</table>
 
-For ajax tabs, there are two additional event hooks that fire:
+You can bind custom handlers to any of these events. You can even cancel the tab change by returning false in an `easytabs:before` binding. <button id='stop-logging'>Click to stop</button>
 
-{% highlight js %}
-easytabs:ajax:beforeSend // fires before ajax request is made
-easytabs:ajax:complete   // fires when ajax request is complete (before the content is loaded)
-{% endhighlight %}
+<div id="tab-console">
+  <div class='logged-event-group'>Waiting for events...</div>
+</div>
 
-You can bind custom handlers to any of these events. You can even cancel the tab change by returning false in an easytabs:before binding:
+<script type="text/javascript">
+var log = true;
 
-{% highlight js %}
-$('#tab-container').bind('easytabs:before', function(){
-  return confirm("Are you sure you want to switch tabs?");
+$('#stop-logging').click( function() {
+  log = false;
 });
+
+$('#tab-full-container')
+  .bind('easytabs:before', function() {
+    if ( log ) {
+      var $tabConsole = $('#tab-console'),
+          $lastGroup = $tabConsole.find('.logged-event-group').slideUp();
+
+      $tabConsole
+        .append("<div class='logged-event-group'><span class='logged-event'><code>easytabs:before</code> fired</span></div>");
+      setTimeout( function() { $lastGroup.remove(); }, 500);
+    }
+  })
+  .bind('easytabs:midTransition', function() {
+    if ( log ) {
+      $('#tab-console')
+        .find('.logged-event-group').last()
+          .append("<span class='logged-event'><code>easytabs:midTransition</code> fired</span>");
+    }
+  })
+  .bind('easytabs:after', function() {
+    if ( log ) {
+      $('#tab-console')
+        .find('.logged-event-group').last()
+          .append("<span class='logged-event'><code>easytabs:after</code> fired</span>");
+    }
+  });
+</script>
+
+The above logging is being done with this JS:
+
+{% highlight js %}
+var log = true;
+
+$('#stop-logging').click( function() {
+  log = false;
+});
+
+$('#tab-full-container')
+  .bind('easytabs:before', function() {
+    if ( log ) {
+      var $tabConsole = $('#tab-console'),
+          $lastGroup = $tabConsole.find('.logged-event-group').slideUp();
+
+      $tabConsole
+        .append("<div class='logged-event-group'><span class='logged-event'>easytabs:before fired</span></div>");
+      setTimeout( function() { $lastGroup.remove(); }, 500);
+    }
+  })
+  .bind('easytabs:midTransition', function() {
+    if ( log ) {
+      $('#tab-console')
+        .find('.logged-event-group').last()
+          .append("<span class='logged-event'>easytabs:midTransition fired</span>");
+    }
+  })
+  .bind('easytabs:after', function() {
+    if ( log ) {
+      $('#tab-console')
+        .find('.logged-event-group').last()
+          .append("<span class='logged-event'>easytabs:after fired</span>");
+    }
+  });
 {% endhighlight %}
 
-All callbacks also pass parameters to the handler function, as described in this post.
+All callbacks also pass parameters to the handler function, as described in [this post](http://www.alfajango.com/blog/jquery-easytabs-plugin-v2-1-2/).
 
-The ajax event hooks have their own set of data passed as well, see this post for more detail and examples.
+The ajax event hooks have their own set of data passed as well, see [this post for more detail and examples](http://www.alfajango.com/blog/jquery-easytabs-v2-3-released-ajax-tabs-and-more/#ajax-tabs).
 
-The easytabs:midTransition is also when the URL gets updated when the configuration option updateHash is true (which it is by default). The URL must be updated precisely after the previous panel has disappeared from the page, but before the next panel appears to avoid making the browser window jump to the panel when the URL is updated.
+The `easytabs:midTransition` is also when the URL gets updated if `updateHash` is true (which it is by default). The URL must be updated precisely after the previous panel has disappeared from the page, but before the next panel appears to avoid making the browser window jump to the top of the panel when the URL is updated.
 
 <span id="demos"></span>
 
