@@ -27,6 +27,8 @@ anchors:
     href: '#public-methods'
   - title: Event hooks
     href: '#event-hooks'
+  - title: More demos
+    href: '#more-demos'
 articles:
   - title: "More flexible layout, bookmarking, back- and forward-button support for browsers, and tab cycling"
     href: http://www.alfajango.com/blog/jquery-easytabs-plugin-now-more-flexible-and-usable
@@ -315,6 +317,7 @@ You can configure EasyTabs by passing in a hash of options when you instantiate 
 
 Here's an example that uses some of the non-default configuration options:
 
+<div id="full-container">
 <div id="tab-full-container" class='tab-container'>
  <div class='tabs'>
   <span class='tab'><a href="#tabs2-html">HTML Markup</a></span>
@@ -358,6 +361,7 @@ $("#tab-full-container").easytabs({
 {% endhighlight %}
   </div>
  </div>
+</div>
 </div>
 
 <script type="text/javascript">
@@ -515,12 +519,312 @@ The ajax event hooks have their own set of data passed as well, see [this post f
 
 The `easytabs:midTransition` is also when the URL gets updated if `updateHash` is true (which it is by default). The URL must be updated precisely after the previous panel has disappeared from the page, but before the next panel appears to avoid making the browser window jump to the top of the panel when the URL is updated.
 
-<span id="demos"></span>
+<span id="more-demos"></span>
 
-## Live demos
+## More demos
 
- Many tab containers on one page (with various configurations)
+Here are some more demos showcasing what you can do with EasyTabs. Check
+out the source to see how they're done.
 
- Disconnected tabs and tabbed content demo
+### Nested tabs
+
+<div class="tab-container" id="outer-container">
+ <ul class='tabs'>
+  <li class='tab'><a href="#nested-tab-1">Tab 1</a></li>
+  <li class='tab'><a href="#nested-tab-2">Tab 2</a></li>
+  <li class='tab'><a href="#nested-tab-3">Tab 3</a></li>
+ </ul>
+ <div class="panel-container">
+  <div id="nested-tab-1">
+   <h2>Heading 1</h2>
+   <p>This is the content of the first tab.</p>
+  </div>
+  <div id="nested-tab-2">
+   <h2>Heading 2</h2>
+   <p>Stuff from the second tab.</p>
+  </div>
+  <div id="nested-tab-3">
+   <h2>Heading 3</h2>
+   <p>More stuff from the last tab.</p>
+
+   <div class="tab-container" id="inner-container">
+   <ul class='tabs'>
+   <li class='tab'><a href="#tab-a">Subtab A</a></li>
+   <li class='tab'><a href="#tab-b">Subtab B</a></li>
+   <li class='tab'><a href="#tab-c">Subtab C</a></li>
+   </ul>
+   <div class="panel-container">
+   <div id="tab-a">
+   <h3>Heading A</h3>
+   <p>This is a nested first tab</p>
+   </div>
+   <div id="tab-b">
+   <h3>Heading B</h3>
+   <p>This is a nested second tab</p>
+   </div>
+   <div id="tab-c">
+   <h3>Heading C</h3>
+   <p>This is a nested third tab</p>
+   </div>
+   </div>
+   <br />
+   </div>
+  </div>
+ </div>
+</div>
+
+<script type="text/javascript">
+  $('#outer-container, #inner-container').easytabs();
+</script>
+
+### Tabs on side
+
+<div id="tab-side-container">
+ <ul>
+  <li><a href="#side-tab1">Tab 1</a></li>
+  <li><a href="#side-tab2">The Second Tab</a></li>
+  <li><a href="#side-tab3">Tab C</a></li>
+ </ul>
+ <div class="panel-container">
+  <div id="side-tab1">
+   <h2>Configurations</h2>
+   <p>This example has the animation disabled, so tab-switching is instantaneous. It also sets the active class names to custom names for more control over CSS stylization.</p>
+  </div>
+  <div id="side-tab2">
+   <h2>Heading 2</h2>
+   <p>Stuff from the second tab.</p>
+  </div>
+  <div id="side-tab3">
+   <h2>Heading 3</h2>
+   <p>More stuff from the last tab.</p>
+  </div>
+ </div>
+</div>
+
+<script type="text/javascript">
+$('#tab-side-container').easytabs({
+  animate: false,
+  tabActiveClass: "selected-tab",
+  panelActiveClass: "displayed"
+});
+</script>
+
+### Tabs on bottom
+
+<div id="tab-bottom-container">
+ <div class="panel-container">
+  <div id="bottom-tab1">
+   <h2>Heading 1</h2>
+   <p>This is the content of the first tab.</p>
+  </div>
+  <div id="bottom-tab2">
+   <h2>Configuration</h2>
+   <p>This example displays the second tab by default. Also, the tab-switching animation is slowed down to 4 seconds (2sec fade-out and 2sec fade-in).</p>
+  </div>
+  <div id="bottom-tab3">
+   <h2>Heading 3</h2>
+   <p>More stuff from the last tab.</p>
+  </div>
+ </div>
+ <ul>
+  <li><a href="#bottom-tab1">Tab 1</a></li>
+  <li id="the-second-tab"><a href="#bottom-tab2">The Second Tab</a></li>
+  <li><a href="#bottom-tab3">Tab C</a></li>
+ </ul>
+</div>
+<br class='clear' />
+
+<script type="text/javascript">
+$('#tab-bottom-container').easytabs({
+  animationSpeed: 2000,
+  defaultTab: "li#the-second-tab"
+});
+</script>
+
+### Collapsible and cancelable
+
+<div id="tab-collapsible-container">
+ <ul>
+  <li><a href="#collapsible-tab1">Tab 1</a></li>
+  <li><a href="#collapsible-tab2">The Second Tab</a></li>
+  <li><a href="#collapsible-tab3">Tab C</a></li>
+ </ul>
+ <div class="panel-container">
+  <div id="collapsible-tab1">
+   <h2>Heading 1</h2>
+   <p>This is the content of the first tab.</p>
+  </div>
+  <div id="collapsible-tab2">
+   <h2>Heading 2</h2>
+   <p>Stuff from the second tab.</p>
+  </div>
+  <div id="collapsible-tab3">
+   <h2>Heading 3</h2>
+   <p>More stuff from the last tab.</p>
+  </div>
+ </div>
+</div>
+
+<script type="text/javascript">
+$('#tab-collapsible-container')
+  .easytabs({
+    collapsible: true
+  })
+  .bind('easytabs:before', function(e, tab){
+    if ( ! tab.hasClass('active') && ! tab.hasClass('collapsed') ) {
+      return confirm("Are you sure you want to switch tabs?");
+    }
+  });
+</script>
+
+### Disconnected tabs and panels
+
+<div id="tab-disconnected-container">
+ <ul>
+  <li><a href="#disconnected-tab1">Tab 1</a></li>
+  <li><a href="#disconnected-tab2">The Second Tab</a></li>
+  <li><a href="#disconnected-tab3">Tab C</a></li>
+ </ul>
+ <br class='clear' />
+ <p>Here is some random information that is not contained in the tabbed content and situated between the tabs and content divs.</p>
+ <div class="panel-container">
+  <div id="disconnected-tab1">
+   <h2>Heading 1</h2>
+   <p>This is the content of the first tab.</p>
+  </div>
+  <div id="disconnected-tab2">
+   <h2>Heading 2</h2>
+   <p>Stuff from the second tab.</p>
+  </div>
+  <div id="disconnected-tab3">
+   <h2>Heading 3</h2>
+   <p>More stuff from the last tab.</p>
+  </div>
+ </div>
+</div>
+
+<script type="text/javascript">
+$('#tab-disconnected-container').easytabs();
+</script>
+
+### Transition Options
+
+<div id="tab-transition-container" class="tab-container">
+ <ul class="tabs">
+  <li class="tab"><a href="#transition-tab1">Tab 1</a></li>
+  <li class="tab"><a href="#transition-tab2">Tab 2</a></li>
+  <li class="tab"><a href="#transition-tab3">Tab 3</a></li>
+ </ul>
+ <div class="panel-container">
+  <div id="transition-tab1">
+   <h2>Heading 1</h2>
+   <p>Using slideUp and slideDown to transition between tab changes, <br />and fadeOut and fadeIn for collapsing transitions</p>
+  </div>
+  <div id="transition-tab2">
+   <h2>Heading 2</h2>
+   <p>Stuff from the second tab.</p>
+  </div>
+  <div id="transition-tab3">
+   <h2>Heading 3</h2>
+   <p>More stuff from the last tab.</p>
+  </div>
+ </div>
+</div>
+
+<script type="text/javascript">
+$('#tab-transition-container').easytabs({
+  collapsible: true,
+  transitionIn: 'slideDown',
+  transitionOut: 'slideUp',
+  transitionCollapse: 'fadeOut',
+  transitionUncollapse: 'fadeIn'
+});
+</script>
+
+### As Form Sections
+
+<form id="tab-nondiv-container" class='tab-container'>
+ <legend>
+  Form parts:
+  <ul class='tabs'>
+   <li class='tab'><a href="#nondiv-tab1">Tab 1</a></li>
+   <li class='tab'><a href="#nondiv-tab2">Tab 2</a></li>
+  </ul>
+ </legend>
+ <div class="field-container">
+  <fieldset id="nondiv-tab1">
+   <label>Tab 1 input</label>
+   <input type="text" />
+  </fieldset>
+  <fieldset id="nondiv-tab2">
+   <label>Tab 2 input</label>
+   <input type="text" />
+  </fieldset>
+ </div>
+</form>
+
+<script type="text/javascript">
+$('#tab-nondiv-container').easytabs({tabs: "legend ul li"});
+</script>
+
+### Previous and Next buttons
+
+<div id="buttons-container">
+<div id="tab-buttons-container" class='tab-container'>
+ <ul class='tabs'>
+  <li class='tab'><a href="#buttons-tab1">Tab 1</a></li>
+  <li class='tab'><a href="#buttons-tab2">Tab 2</a></li>
+  <li class='tab'><a href="#buttons-tab3">Tab 3</a></li>
+ </ul>
+ <div class="panel-container">
+  <div id="buttons-tab1" class="ui-tabs-panel">
+   <br class='clear' />
+   <h2>Heading 1</h2>
+   <p>This is the content of the first tab.</p>
+  </div>
+  <div id="buttons-tab2" class="ui-tabs-panel">
+   <br class='clear' />
+   <h2>Heading 2</h2>
+   <p>Stuff from the second tab.</p>
+  </div>
+  <div id="buttons-tab3" class="ui-tabs-panel">
+   <br class='clear' />
+   <h2>Heading 3</h2>
+   <p>More stuff from the last tab.</p>
+  </div>
+ </div>
+</div>
+</div>
+
+<script type="text/javascript">
+$('#tab-buttons-container').easytabs();
+
+var $tabContainer = $('#tab-buttons-container'),
+    $tabs = $tabContainer.data('easytabs').tabs,
+    $tabPanels = $(".ui-tabs-panel")
+    totalSize = $tabPanels.length;
+
+$tabPanels.each(function(i){
+  if (i != 0) {
+    prev = i - 1;
+    $(this).prepend("<a href='#' class='prev-tab mover' rel='" + prev + "'>&laquo; Prev Page</a>");
+  } else {
+    $(this).prepend("<span class='prev-tab'>&laquo; Prev Page</span>");
+  }
+  if (i+1 != totalSize) {
+    next = i + 1;
+    $(this).prepend("<a href='#' class='next-tab mover' rel='" + next + "'>Next Page &raquo</a>");
+  } else {
+    $(this).prepend("<span class='next-tab'>Next Page &raquo</span>");
+  }
+});
+
+$('.next-tab, .prev-tab').click(function() {
+  var i = parseInt($(this).attr('rel'));
+  var tabSelector = $tabs.children('a:eq(' + i + ')').attr('href');
+  $tabContainer.easytabs('select', tabSelector);
+  return false;
+});
+</script>
 
 </div>
