@@ -40,9 +40,6 @@ pre::-webkit-scrollbar-thumb,
 #full-container {
   height: 375px;
 }
-#buttons-container {
-  height: 200px;
-}
 
 #tab-console {
   background: #333;

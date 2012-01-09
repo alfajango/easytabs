@@ -23,6 +23,8 @@ anchors:
     href: '#ajax-tabs'
   - title: Configuration options
     href: '#configuration'
+  - title: Advanced demo
+    href: '#advanced-demo'
   - title: Public methods
     href: '#public-methods'
   - title: Event hooks
@@ -315,6 +317,10 @@ You can configure EasyTabs by passing in a hash of options when you instantiate 
  </tbody>
 </table>
 
+<span id="advanced-demo"></span>
+
+## Advanced Demo
+
 Here's an example that uses some of the non-default configuration options:
 
 <div id="full-container">
@@ -437,7 +443,10 @@ jQuery EasyTabs fires off three events to which you can bind your own functional
  </tbody>
 </table>
 
-You can bind custom handlers to any of these events. You can even cancel the tab change by returning false in an `easytabs:before` binding. <button id='stop-logging'>Click to stop</button>
+You can bind custom handlers to any of these events. You can even cancel the tab change by returning false in an `easytabs:before` binding.
+
+Here are the events being fired from the cycling tabs in the Advanced
+Demo above. <button id='stop-logging'>Click to stop</button>
 
 <div id="tab-console">
   <div class='logged-event-group'>Waiting for events...</div>
@@ -769,7 +778,6 @@ $('#tab-nondiv-container').easytabs({tabs: "legend ul li"});
 
 ### Previous and Next buttons
 
-<div id="buttons-container">
 <div id="tab-buttons-container" class='tab-container'>
  <ul class='tabs'>
   <li class='tab'><a href="#buttons-tab1">Tab 1</a></li>
@@ -793,7 +801,6 @@ $('#tab-nondiv-container').easytabs({tabs: "legend ul li"});
    <p>More stuff from the last tab.</p>
   </div>
  </div>
-</div>
 </div>
 
 <script type="text/javascript">
