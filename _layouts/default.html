@@ -42,6 +42,13 @@
         <li><a href="{{ anchor.href }}">{{ anchor.title }}</a></li>
         {% endfor %}
       </ul>
+
+      <ul id='articles'>
+        <h2>Articles</h2>
+        {% for article in page.articles %}
+        <li><a href="{{ article.href }}">{{ article.title }}</a></li>
+        {% endfor %}
+      </ul>
     </div>
 
     <div id='post'>

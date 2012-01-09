@@ -27,6 +27,17 @@ anchors:
     href: '#public-methods'
   - title: Event hooks
     href: '#event-hooks'
+articles:
+  - title: "More flexible layout, bookmarking, back- and forward-button support for browsers, and tab cycling"
+    href: http://www.alfajango.com/blog/jquery-easytabs-plugin-now-more-flexible-and-usable
+  - title: "Version 2.0: More versatile, event-hooks, and public methods"
+    href: http://www.alfajango.com/blog/jquery-easytabs-plugin-v2/
+  - title: "Version 2.1.2: uiTabs, collapsible, cancel, and callback parameters"
+    href: http://www.alfajango.com/blog/jquery-easytabs-plugin-v2-1-2/
+  - title: "Version 2.2: panel height transitions, and animation options"
+    href: http://www.alfajango.com/blog/jquery-easytabs-plugin-v2-2/
+  - title: "Version 2.3: ajax, nested tab-sets, and custom panel markup"
+    href: http://www.alfajango.com/blog/jquery-easytabs-v2-3-released-ajax-tabs-and-more/
 ---
 
 # JQuery EasyTabs Plugin
