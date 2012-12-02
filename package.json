@@ -1,7 +1,7 @@
 {
   "name": "EasyTabs",
   "description": "The jQuery EasyTabs plugin handles all of the functionality of tabs and none of the styling.",
-  "version": "2.3.3",
+  "version": "3.1.1",
   "keywords": [
     "tabs"
   ],
@@ -20,30 +20,20 @@
     }
   ],
   "dependencies": {
-    "jquery": "1.4"
+    "jquery": ["1.4.3","1.5","1.6","1.7"]
   },
   "optionalDependencies": {
     "hashchange": "",
     "address": ""
   },
   "demos": [
-    "/examples/basic.html",
-    "/examples/bottom.html",
-    "/examples/collapsible-and-cancel.html",
-    "/examples/disconnected.html",
-    "/examples/height-and-transition-options.html",
-    "/examples/multiple.html",
-    "/examples/nested.html",
-    "/examples/side.html",
-    "/examples/non-div-panesl.html",
-    "/examples/prev-next.html",
-    "/examples/ajax.html"
+    "/examples/demo.html"
   ],
   "bugs": {
     "mail": "support@alfajango.com",
     "web": "https://github.com/jangosteve/jquery-easytabs/issues"
   },
-  "repositories"	: [
+  "repositories": [
     {
       "type": "git",
       "url": "https://github.com/jangosteve/jquery-easytabs.git"
@@ -59,5 +49,6 @@
       "url": "http://www.gnu.org/licenses/gpl.html"
     }
   ],
-  "homepage": "http://www.alfajango.com/blog/jquery-easytabs-plugin/"
+  "homepage": "http://www.alfajango.com/blog/jquery-easytabs-plugin/",
+  "main": "/lib/jquery.easytabs.min.js"
 }
